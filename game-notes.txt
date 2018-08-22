@@ -1,0 +1,83 @@
+It's a Goss Off!!!
+Which Ryan will get to eat the cereal?
+
+Choose one of the Ryan Gosling characters:
+
+
+Alan Bosley - Remember the Titans
+Noah - The Notebook
+Driver - Drive
+Jacob - Crazy, Stupid, Love
+Lars - Lars and the Real Girl
+
+
+Alan {
+    Health: 210
+    Attack: 5
+    Counter-Attack: 12
+}
+
+Noah {
+    Health: 160
+    Attack: 7
+    Counter-Attack: 20
+}
+
+Driver {
+    Health: 120
+    Attack: 9
+    Counter-Attack: 22
+}
+
+Jacob {
+    Health: 140
+    Attack: 8
+    Counter-Attack: 18
+}
+
+Lars {
+    Health: 180
+    Attack: 6
+    Counter-Attack: 17
+}
+
+
+Once selected, you pick who to attack
+
+
+Use jQuery to loop through and create the characters
+
+
+
+
+
+//5 character objects
+//var playerCharacter
+//var dead = false;
+
+
+// if (player.health >= 0) {
+    player.dead = true;
+}
+
+
+
+
+
+
+
+
+
+
+
+RIP Ryan McHenry
+
+
+
+
+
+
+
+
+oop: how/where to break up the code into objects different objects 
+css: full-height images
