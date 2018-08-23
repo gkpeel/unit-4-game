@@ -1,0 +1,11 @@
+#playerSelect, #playerCharacter, #opponents, #defender {
+    display: flex;
+}
+
+
+.character {
+    width: 150px;
+    height: 150px;
+    background-color: #aaa;
+    border: 1px red solid;
+}
