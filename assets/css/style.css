@@ -1,11 +1,53 @@
-#playerSelect, #playerCharacter, #opponents, #defender {
-    display: flex;
+body {
+    background: url('../images/background.gif') center no-repeat;
+    height: 100vh;
+    background-size: cover;
+    color: red;
+}
+
+.white, .character {
+    color: #fff;
 }
 
 
+#playerSelect, #opponents, #defender {
+    display: flex;
+}
+
+#playerSelect, #opponents {
+    justify-content: space-between;
+}
+
+#playerSelect, #opponents, #defender {
+    min-height: 100px;
+}
+
 .character {
-    width: 150px;
-    height: 150px;
-    background-color: #aaa;
-    border: 1px red solid;
+    width: 175px;
+    height: 100px;
+}
+
+[data-name="bosley"] {
+    background: url('../images/alan-bosley-ref.jpg') center no-repeat;
+    background-size: cover;
+}
+
+[data-name="jacob"] {
+    background: url('../images/jacob-ref.jpg') center no-repeat;
+    background-size: cover;
+}
+
+[data-name="noah"] {
+    background: url('../images/noah-ref.gif') center no-repeat;
+    background-size: cover;
+}
+
+[data-name="driver"] {
+    background: url('../images/driver-ref.jpg') top no-repeat;
+    background-size: cover;
+}
+
+[data-name="lars"] {
+    background: url('../images/lars-ref.jpg') top no-repeat;
+    background-size: cover;
 }
