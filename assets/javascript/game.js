@@ -54,8 +54,8 @@ function arrayMinusSelected( array, selectedIndex) {
     for (var i=0; i<selectedIndex; i++) {
         retval.push(array[i]);
     }
-    for (var i=selectedIndex+1; i< array.length; i++) {
-        retval.push(array[i]);
+    for (var j = selectedIndex+1; j < array.length; j++) {
+        retval.push(array[j]);
     }
     return retval;
 }
@@ -84,17 +84,18 @@ $(document).ready(function() {
     // Creates available opponents and selects player's character
     $(".character-select").on("click", function() {
         if ( !characterSelected ) {
-            var charIndex = $(this).attr("data-character-number");
-            playerCharacter = charactersArray.splice(charIndex, 1);
+            var charIndex = Number($(this).attr("data-character-number"));
+            playerCharacter = charactersArray[charIndex];
+            opponentsArray = arrayMinusSelected(charactersArray, charIndex);
             $(".character-select").not($(this)).remove();
             $(this).addClass("player");
-            for (var i=0; i<charactersArray.length; i++) {
+            for (var i=0; i<opponentsArray.length; i++) {
                 var opponent = $("<div>");
                 opponent.addClass("character opponent-select");
-                opponent.attr("data-name", charactersArray[i].name.toLowerCase());
+                opponent.attr("data-name", opponentsArray[i].name.toLowerCase());
                 opponent.attr("data-character-number", i);
-                opponent.html(charactersArray[i].name);
-                opponent.append('<div class="health">' + charactersArray[i].hp + "</div>");
+                opponent.html(opponentsArray[i].name);
+                opponent.append('<div class="health">' + opponentsArray[i].hp + "</div>");
                 $("#opponents").append(opponent);
             }
         }
@@ -105,13 +106,15 @@ $(document).ready(function() {
     // Selects the opponent for the round
     $(document).on("click", "#opponents .opponent-select", function() {
         if ( !opponentSelected ) {
-            var oppIndex = $(this).attr("data-character-number");
-            var currentOpponent = $("<div>").addClass("character opponent").attr("data-name", charactersArray[oppIndex].name.toLowerCase()); //TODO: REFACTOR SO LAST INDEX RESELECT WORKS, REWORK SPLICE
-            currentOpponent.html(charactersArray[oppIndex].name);
-            currentOpponent.append('<div class="health">' + charactersArray[oppIndex].hp + "</div>");
-            currentOpp = charactersArray.splice(oppIndex, 1);
-            $("#defender").append(currentOpponent);
+            var oppIndex = $(this).index();
+            console.log("oppIndex: " + oppIndex);
+            var currentOpponent = $("<div>").addClass("character opponent").attr("data-name", opponentsArray[oppIndex].name.toLowerCase()); //TODO: REFACTOR SO LAST INDEX RESELECT WORKS, REWORK SPLICE
+            currentOpponent.html(opponentsArray[oppIndex].name);
+            currentOpponent.append('<div class="health">' + opponentsArray[oppIndex].hp + "</div>");
+            currentOpp = opponentsArray[oppIndex];
+            opponentsArray = arrayMinusSelected(opponentsArray, oppIndex);
             $(this).remove();
+            $("#defender").append(currentOpponent);
             opponentSelected = true;
         }
     });
@@ -121,26 +124,26 @@ $(document).ready(function() {
     $("#attack").on("click", function() {
         if ( characterSelected && opponentSelected ) {
 
-            if ( playerCharacter[0].hp > 0 && currentOpp[0].hp > 0 ) {
-                playerCharacter[0].hp -= currentOpp[0].counter;
-                currentOpp[0].hp -= playerCharacter[0].att;
-                playerCharacter[0].att += playerCharacter[0].att;
+            if ( playerCharacter.hp > 0 && currentOpp.hp > 0 ) {
+                playerCharacter.hp -= currentOpp.counter;
+                currentOpp.hp -= playerCharacter.att;
+                playerCharacter.att += playerCharacter.att;
             }    
 
-            if ( currentOpp[0].hp < 0 ) {
+            if ( currentOpp.hp < 0 ) {
                 $("#defender").empty();
                 opponentSelected = false;
             }
 
-            if ( playerCharacter[0].hp < 0 ) {
+            if ( playerCharacter.hp < 0 ) {
                 $("#playerSelect").addClass("dead");
                 $(this).disabled = true;
                 gameOver = true;
             }
 
-            $("#playerSelect .player .health").html(playerCharacter[0].hp);
-            $("#defender .opponent .health").html(currentOpp[0].hp);
-            message = gameMessage(playerCharacter[0], currentOpp[0]);
+            $("#playerSelect .player .health").html(playerCharacter.hp);
+            $("#defender .opponent .health").html(currentOpp.hp);
+            message = gameMessage(playerCharacter, currentOpp);
             $("#game-message").html(message);
         }
     });
