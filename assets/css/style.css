@@ -1,11 +1,22 @@
+
+
 body {
     background: url('../images/background.gif') center no-repeat;
     height: 100vh;
     background-size: cover;
-    color: red;
 }
 
-.white, .character {
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.25;
+    z-index: -1;
+}
+
+
+.white {
     color: #fff;
 }
 
@@ -25,6 +36,34 @@ body {
 .character {
     width: 175px;
     height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.character-name, .health {
+    width: 100%;
+    text-align: right;
+    background-image: linear-gradient(to right, rgba(230,230,230,0.0), rgba(230,230,230,0.97));
+    padding: 0px 4px;
+}
+
+#player .character-name, #player .health {
+    background-image: linear-gradient(to right, rgba(230,230,230,0.0), rgba(100, 194, 71, 0.97));
+    color: #fff;
+}
+
+.opponent-select .character-name,
+.opponent-select .health {
+    background-image: linear-gradient(to right, rgba(230,230,230,0.0), rgba(209, 90, 53, 0.97));
+    color: #eee;
+}
+
+.opponent .character-name,
+.opponent .health {
+    background-image: linear-gradient(to right, rgba(230,230,230,0.0), rgba(124, 34, 7, 0.97));
+    color: #e1e1e1;
 }
 
 [data-name="bosley"] {
@@ -50,4 +89,9 @@ body {
 [data-name="lars"] {
     background: url('../images/lars-ref.jpg') top no-repeat;
     background-size: cover;
+}
+
+.message-container {
+    height: 75px;
+    color: #fff;
 }
