@@ -1,9 +1,17 @@
-
+@import url('https://fonts.googleapis.com/css?family=Lato|Nunito');
 
 body {
     background: url('../images/background.gif') center no-repeat;
     height: 100vh;
     background-size: cover;
+}
+
+h1{
+    font-family: 'Nunito', sans-serif;
+}
+
+h2 {
+    font-family: 'Lato', sans-serif;
 }
 
 .overlay {
@@ -30,12 +38,12 @@ body {
 }
 
 #playerSelect, #opponents, #defender {
-    min-height: 100px;
+    min-height: 110px;
 }
 
 .character {
     width: 175px;
-    height: 100px;
+    height: 110px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -77,12 +85,12 @@ body {
 }
 
 [data-name="noah"] {
-    background: url('../images/noah-ref.gif') center no-repeat;
+    background: url('../images/noah-ref2.webp') center no-repeat;
     background-size: cover;
 }
 
 [data-name="driver"] {
-    background: url('../images/driver-ref.jpg') top no-repeat;
+    background: url('../images/driver-ref2.jpg') top no-repeat;
     background-size: cover;
 }
 
@@ -92,6 +100,7 @@ body {
 }
 
 .message-container {
+    margin-top: 24px;
     height: 75px;
     color: #fff;
 }

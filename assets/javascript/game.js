@@ -66,7 +66,7 @@ function gameCheck(character1, character2) {
         $("#playerSelect").addClass("dead");
         $("#reset").removeClass("d-none");
         $("#attack").addClass("disabled");
-        outcome = "loss";
+        outcome = false;
     } else {
         $("#player .health").html(character1.hp);
     }
@@ -75,7 +75,9 @@ function gameCheck(character1, character2) {
         $("#defender").empty();
         opponentSelected = false;
         if ($("#opponents").children().length === 0) {
-            outcome = "win";
+            outcome = true;
+            $("#reset").removeClass("d-none");
+            $("#attack").addClass("disabled");
         }
     } else {
         $("#defender .opponent .health").html(character2.hp);
@@ -86,10 +88,10 @@ function gameMessage ( player, opponent) {
     if (outcome === undefined) {
         return "You attacked " + opponent.name + " for " + player.att + " damage. " + opponent.name + " attacked you back for " + opponent.counter + " damage.";
     }
-    if (outcome === "loss"){
+    if (outcome === false){
         return opponent.name + " killed you! You lose!";
     }
-    if (outcome === "win") {
+    if (outcome === true) {
         return "No more Goslings to goose, you win Ryan Gosling. Now eat your cereal!";
     }
 }
